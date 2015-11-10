@@ -13,7 +13,6 @@
 class SortingAlgorithmBase {
 public:
     SortingAlgorithmBase();
-    SortingAlgorithmBase(const SortingAlgorithmBase& orig);
     virtual ~SortingAlgorithmBase();
 protected:
     template<typename T, size_t SIZE>
@@ -28,6 +27,10 @@ protected:
     template<typename T, size_t SIZE>
     T* findMinimumUnoptimized (std::array<T, SIZE> *ptr, size_t startIndex);
 };
+
+SortingAlgorithmBase::SortingAlgorithmBase() { }
+
+SortingAlgorithmBase::~SortingAlgorithmBase() { }
 
 template<typename T, size_t SIZE>
 T* SortingAlgorithmBase::findMinimumOptimized(std::array<T, SIZE>* ptr) {

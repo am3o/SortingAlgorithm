@@ -22,11 +22,13 @@ public:
     void sortWithGuardian(std::array<T, SIZE>* ptr);
 };
 
-InsertSortAlgorithm::InsertSortAlgorithm(){}
+InsertSortAlgorithm::InsertSortAlgorithm(){
 
-InsertSortAlgorithm::InsertSortAlgorithm(const InsertSortAlgorithm& orig){}
+}
 
-InsertSortAlgorithm::~InsertSortAlgorithm(){}
+InsertSortAlgorithm::~InsertSortAlgorithm(){
+
+}
 
 template<typename T, size_t SIZE>
 void InsertSortAlgorithm::sort(std::array<T, SIZE>* ptr) {

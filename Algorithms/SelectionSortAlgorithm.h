@@ -22,13 +22,15 @@ public:
     template <typename T, size_t SIZE>
     void sortOptimized(std::array<T, SIZE> *ptr);
 };
-/*
-SelectionSortAlgorithm::SelectionSortAlgorithm(){}
 
-SelectionSortAlgorithm::SelectionSortAlgorithm(const SelectionSortAlgorithm& orig){}
+SelectionSortAlgorithm::SelectionSortAlgorithm(){
 
-SelectionSortAlgorithm::~SelectionSortAlgorithm(){}
-*/
+}
+
+SelectionSortAlgorithm::~SelectionSortAlgorithm(){
+
+}
+
 template <typename T, size_t SIZE>
 void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE> *ptr) {
     for(size_t i = 0; i < SIZE-1; i++){
