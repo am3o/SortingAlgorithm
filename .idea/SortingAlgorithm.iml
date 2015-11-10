@@ -6,7 +6,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Algorithms/SelectionSortAlgorithm.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Algorithms/SortingAlgorithmBase.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Tests/TestSuiteService.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
