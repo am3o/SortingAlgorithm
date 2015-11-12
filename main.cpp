@@ -1,9 +1,9 @@
 #include <iostream>
 #include <chrono>
 
-#include "Tests/TestSuiteService.h"
-#include "Algorithms/InsertSortAlgorithm.h"
-#include "Algorithms/SelectionSortAlgorithm.h"
+#include "tests/TestSuiteService.h"
+#include "algorithms/InsertSortAlgorithm.h"
+#include "algorithms/SelectionSortAlgorithm.h"
 
 #define ELEMENTTYPE int
 #define SIZE 64000

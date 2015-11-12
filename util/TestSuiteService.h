@@ -5,7 +5,6 @@
 #ifndef SORTINGALGORITHM_TESTSUITESERVICE_H
 #define SORTINGALGORITHM_TESTSUITESERVICE_H
 
-
 #include <stdlib.h>
 #include <iterator>
 #include <algorithm>
