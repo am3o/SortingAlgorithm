@@ -15,7 +15,7 @@ using namespace std::chrono;
 
 class BenchmarkRunner{
 private:
-    TestSuiteService _service;
+    TestSuiteService* _service;
 
     template<typename T, size_t SIZE>
     bool prepareBenchmarkTest(int testcase, std::array<T, SIZE> *parameter);
@@ -34,27 +34,27 @@ public:
 };
 
 BenchmarkRunner::BenchmarkRunner() {
-    _service;
+    _service = new TestSuiteService();
 }
 
 BenchmarkRunner::~BenchmarkRunner() {
-    _service.~TestSuiteService();
+    _service->~TestSuiteService();
 }
 
 template<typename T, size_t SIZE>
 bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE> *parameter) {
     switch (testcase){
         case 0:
-            _service.fillArrayRandom(parameter);
+            _service->fillArrayRandom(parameter);
             break;
         case 1:
-            _service.fillArrayAsc(parameter);
+            _service->fillArrayAsc(parameter);
             break;
         case 2:
-            _service.fillArrayDesc(parameter);
+            _service->fillArrayDesc(parameter);
             break;
         default:
-            _service.fillArrayRandom(parameter);
+            _service->fillArrayRandom(parameter);
             break;
     }
 
