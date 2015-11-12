@@ -10,26 +10,14 @@
 
 #include <iostream>
 
-class SelectionSortAlgorithm : SortingAlgorithmBase{
+class SelectionSortAlgorithm : public SortingAlgorithmBase{
 public:
-    SelectionSortAlgorithm();
-    SelectionSortAlgorithm(const SelectionSortAlgorithm& orig);
-    virtual ~SelectionSortAlgorithm();
-
     template <typename T, size_t SIZE>
     void sortUnoptimized(std::array<T, SIZE> *ptr);
 
     template <typename T, size_t SIZE>
     void sortOptimized(std::array<T, SIZE> *ptr);
 };
-
-SelectionSortAlgorithm::SelectionSortAlgorithm(){
-
-}
-
-SelectionSortAlgorithm::~SelectionSortAlgorithm(){
-
-}
 
 template <typename T, size_t SIZE>
 void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE> *ptr) {
