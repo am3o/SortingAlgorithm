@@ -9,26 +9,14 @@
 #include "SortingAlgorithmBase.h"
 
 
-class InsertSortAlgorithm : SortingAlgorithmBase {
+class InsertSortAlgorithm : public SortingAlgorithmBase {
 public:
-    InsertSortAlgorithm();
-    InsertSortAlgorithm(const InsertSortAlgorithm& orig);
-    virtual ~InsertSortAlgorithm();
-
     template <typename T, size_t SIZE>
     void sort(std::array<T, SIZE>* ptr);
 
     template <typename T, size_t SIZE>
     void sortWithGuardian(std::array<T, SIZE>* ptr);
 };
-
-InsertSortAlgorithm::InsertSortAlgorithm(){
-
-}
-
-InsertSortAlgorithm::~InsertSortAlgorithm(){
-
-}
 
 template<typename T, size_t SIZE>
 void InsertSortAlgorithm::sort(std::array<T, SIZE>* ptr) {

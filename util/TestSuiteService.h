@@ -5,7 +5,6 @@
 #ifndef SORTINGALGORITHM_TESTSUITESERVICE_H
 #define SORTINGALGORITHM_TESTSUITESERVICE_H
 
-
 #include <stdlib.h>
 #include <iterator>
 #include <algorithm>
@@ -13,10 +12,6 @@
 
 class TestSuiteService {
 public:
-    TestSuiteService();
-    TestSuiteService(const TestSuiteService & orig);
-    virtual ~TestSuiteService();
-
     template<typename T, size_t SIZE>
     void fillArrayRandom(std::array<T, SIZE> *ptr);
 
@@ -27,14 +22,6 @@ public:
     void fillArrayAsc(std::array<T, SIZE> *ptr);
 private:
 };
-
-TestSuiteService::TestSuiteService(){
-
-}
-
-TestSuiteService::~TestSuiteService() {
-
-}
 
 template<typename T, size_t SIZE>
 void TestSuiteService::fillArrayAsc(std::array<T, SIZE> *ptr) {
@@ -53,7 +40,7 @@ void TestSuiteService::fillArrayDesc(std::array<T, SIZE> *ptr) {
 template<typename T, size_t SIZE>
 void TestSuiteService::fillArrayRandom(std::array<T, SIZE> *ptr) {
     for(size_t i = 0; i < SIZE; i++){
-        ptr->at(i)= (T) rand() % 100;
+        ptr->at(i)= (T) rand();
     }
 }
 
