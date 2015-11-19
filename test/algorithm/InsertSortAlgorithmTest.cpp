@@ -1,3 +1,7 @@
+/*
+ * author: Joshua Braun
+ */
+
 #include <gtest/gtest.h>
 
 #include "../../algorithm/InsertSortAlgorithm.h"

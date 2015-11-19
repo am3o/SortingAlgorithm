@@ -1,15 +1,13 @@
-#include <iostream>
-#include <chrono>
+/*
+ * author: Joshua Braun
+ */
 
-#include "util/TestSuiteService.h"
-#include "algorithm/InsertSortAlgorithm.h"
-#include "algorithm/SelectionSortAlgorithm.h"
+#include <iostream>
+
 #include "benchmark/BenchmarkRunner.h"
 
 #define ELEMENTTYPE double
-#define SIZE 64000
-
-using namespace std::chrono;
+#define SIZE 8000
 
 int main() {
     std::array<ELEMENTTYPE, SIZE>* i_array = new std::array<ELEMENTTYPE, SIZE>();

@@ -1,6 +1,6 @@
-//
-// Created by am3o on 10.11.15.
-//
+/*
+ * author: Joshua Braun
+ */
 
 #ifndef SORTINGALGORITHM_SORTINGALGORITHMBASE_H
 #define SORTINGALGORITHM_SORTINGALGORITHMBASE_H

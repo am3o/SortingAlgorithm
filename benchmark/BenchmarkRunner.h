@@ -1,6 +1,6 @@
-//
-// Created by am3o on 12.11.15.
-//
+/*
+ * author: Joshua Braun
+ */
 
 #ifndef SORTINGALGORITHM_BENCHMARKRUNNER_H
 #define SORTINGALGORITHM_BENCHMARKRUNNER_H
@@ -8,6 +8,9 @@
 #include <chrono>
 #include <iostream>
 #include <array>
+#include "../util/TestSuiteService.h"
+#include "../algorithm/InsertSortAlgorithm.h"
+#include "../algorithm/SelectionSortAlgorithm.h"
 
 #define CACHESIZE 64000
 
@@ -65,6 +68,7 @@ bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE> *pa
     delete i_array;
     return true;
 }
+
 template<typename T, size_t SIZE>
 high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array<T, SIZE> *), std::array<T, SIZE>* parameter) {
     this->prepareBenchmarkTest(0, parameter);
@@ -73,6 +77,7 @@ high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     return duration_cast<duration<double>>(t2 - t1);
 }
+
 
 template<typename T, size_t SIZE>
 void BenchmarkRunner::runInsertSortAlgorithm(std::array<T, SIZE> *parameter) {
