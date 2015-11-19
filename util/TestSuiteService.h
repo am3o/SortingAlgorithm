@@ -13,34 +13,34 @@
 class TestSuiteService {
 public:
     template<typename T, size_t SIZE>
-    void fillArrayRandom(std::array<T, SIZE> *ptr);
+    void fillArrayRandom(std::array<T, SIZE>& elements);
 
     template<typename T, size_t SIZE>
-    void fillArrayDesc(std::array<T, SIZE> *ptr);
+    void fillArrayDesc(std::array<T, SIZE>& elements);
 
     template<typename T, size_t SIZE>
-    void fillArrayAsc(std::array<T, SIZE> *ptr);
+    void fillArrayAsc(std::array<T, SIZE>& elements);
 private:
 };
 
 template<typename T, size_t SIZE>
-void TestSuiteService::fillArrayAsc(std::array<T, SIZE> *ptr) {
+void TestSuiteService::fillArrayAsc(std::array<T, SIZE>& elements) {
     for(size_t i = 0; i < SIZE; i++){
-        ptr->at(i) = (T) i;
+        elements[i] = (T) i;
     }
 }
 
 template<typename T, size_t SIZE>
-void TestSuiteService::fillArrayDesc(std::array<T, SIZE> *ptr) {
+void TestSuiteService::fillArrayDesc(std::array<T, SIZE>& elements) {
     for(size_t i = 0; i < SIZE; i++){
-        ptr->at(i) = SIZE - i;
+        elements[i] = SIZE - i;
     }
 }
 
 template<typename T, size_t SIZE>
-void TestSuiteService::fillArrayRandom(std::array<T, SIZE> *ptr) {
+void TestSuiteService::fillArrayRandom(std::array<T, SIZE>& elements) {
     for(size_t i = 0; i < SIZE; i++){
-        ptr->at(i)= (T) rand();
+        elements[i] = (T) rand();
     }
 }
 

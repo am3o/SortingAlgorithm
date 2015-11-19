@@ -19,25 +19,34 @@ using namespace std::chrono;
 class BenchmarkRunner{
 private:
     TestSuiteService* _service;
+    std::ostream*_oStream;
 
     template<typename T, size_t SIZE>
-    bool prepareBenchmarkTest(int testcase, std::array<T, SIZE> *parameter);
+    bool prepareBenchmarkTest(int testcase, std::array<T, SIZE>& parameter);
 public:
     BenchmarkRunner();
+    BenchmarkRunner( std::ostream* ostream);
+
     virtual ~BenchmarkRunner();
 
     template<typename T, size_t SIZE>
     high_resolution_clock::duration run(void(*algorithm)(std::array<T, SIZE> *), std::array<T, SIZE>* parameter);
 
     template<typename T, size_t SIZE>
-    void runSelectionSortAlgorithm(std::array<T, SIZE>* parameter);
+    void runSelectionSortAlgorithm(std::array<T, SIZE>& parameter);
 
     template<typename T, size_t SIZE>
-    void runInsertSortAlgorithm(std::array<T, SIZE>* parameter);
+    void runInsertSortAlgorithm(std::array<T, SIZE>& parameter);
 };
 
 BenchmarkRunner::BenchmarkRunner() {
     _service = new TestSuiteService();
+    _oStream = &std::cout;
+}
+
+BenchmarkRunner::BenchmarkRunner( std::ostream* ostream) {
+    _service = new TestSuiteService();
+    _oStream = ostream;
 }
 
 BenchmarkRunner::~BenchmarkRunner() {
@@ -45,7 +54,7 @@ BenchmarkRunner::~BenchmarkRunner() {
 }
 
 template<typename T, size_t SIZE>
-bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE> *parameter) {
+bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE>& parameter) {
     switch (testcase){
         case 0:
             _service->fillArrayRandom(parameter);
@@ -68,7 +77,7 @@ bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE> *pa
     delete i_array;
     return true;
 }
-
+/**
 template<typename T, size_t SIZE>
 high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array<T, SIZE> *), std::array<T, SIZE>* parameter) {
     this->prepareBenchmarkTest(0, parameter);
@@ -77,52 +86,56 @@ high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array
     high_resolution_clock::time_point t2 = high_resolution_clock::now();
     return duration_cast<duration<double>>(t2 - t1);
 }
+*/
 
 
 template<typename T, size_t SIZE>
-void BenchmarkRunner::runInsertSortAlgorithm(std::array<T, SIZE> *parameter) {
+void BenchmarkRunner::runInsertSortAlgorithm(std::array<T, SIZE>& parameter) {
     InsertSortAlgorithm sortAlgorithm;
-    std::cout<< "'direktes Einfügen' Sortieren [ohne Wächterelement] ("<<SIZE<<" Elemente)"<<std::endl;
+    *_oStream << "InsertSort - Without Guardian; " << SIZE << "; ";
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sort(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
-        std::cout<< i << " Testcase: " << duration_cast<duration<double>>(t2 - t1).count() << " s | ";
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
     }
+    *_oStream << std::endl;
 
-    std::cout<<std::endl<< "'direktes Einfügen' Sortieren [mit Wächterelement] ("<<SIZE<<" Elemente)"<<std::endl;
+    *_oStream << "InsertSort - With Guardian; " << SIZE << "; ";
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sortWithGuardian(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
-        std::cout<< i << " Testcase: " << duration_cast<duration<double>>(t2 - t1).count() << " s | ";
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
     }
-    std::cout<<std::endl;
+    *_oStream << std::endl;
 }
 
 template<typename T, size_t SIZE>
-void BenchmarkRunner::runSelectionSortAlgorithm(std::array<T, SIZE> *parameter) {
+void BenchmarkRunner::runSelectionSortAlgorithm(std::array<T, SIZE>& parameter) {
     SelectionSortAlgorithm sortAlgorithm;
-    std::cout<< "'direkte Auswahl' Sortieren [Optimiert] ("<<SIZE<<" Elemente)"<<std::endl;
-    for(int i = 0; i < 3; i++){
-        this->prepareBenchmarkTest(i, parameter);
-        high_resolution_clock::time_point t1 = high_resolution_clock::now();
-        sortAlgorithm.sortOptimized(parameter);
-        high_resolution_clock::time_point t2 = high_resolution_clock::now();
-        std::cout<< i << " Testcase: " << duration_cast<duration<double>>(t2 - t1).count() << " s | ";
-    }
 
-    std::cout<<std::endl<< "'direkte Auswahl' Sortieren [nicht Optimiert] ("<<SIZE<<" Elemente)"<<std::endl;
+    *_oStream << "SelectionSort - Unoptimized; " << SIZE << " ; ";
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sortUnoptimized(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
-        std::cout<< i << " Testcase: " << duration_cast<duration<double>>(t2 - t1).count() << " s | ";
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
     }
-    std::cout<<std::endl;
+    *_oStream << std::endl;
+
+    *_oStream << "SelectionSort - Optimized; " << SIZE << " ; ";
+    for(int k = 0; k < 3; k++){
+        this->prepareBenchmarkTest(k, parameter);
+        high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        sortAlgorithm.sortOptimized(parameter);
+        high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+    }
+    *_oStream << std::endl;
 }
 
 #endif //SORTINGALGORITHM_BENCHMARKRUNNER_H
