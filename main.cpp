@@ -1,23 +1,34 @@
-#include <iostream>
-#include <chrono>
+/*
+ * author: Joshua Braun
+ */
 
-#include "util/TestSuiteService.h"
-#include "algorithm/InsertSortAlgorithm.h"
-#include "algorithm/SelectionSortAlgorithm.h"
+#include <iostream>
+#include <fstream>
+
 #include "benchmark/BenchmarkRunner.h"
 
 #define ELEMENTTYPE double
-#define SIZE 64000
+#define SIZE 4000
 
-using namespace std::chrono;
+using namespace std;
 
 int main() {
-    std::array<ELEMENTTYPE, SIZE>* i_array = new std::array<ELEMENTTYPE, SIZE>();
+    std::ostream* stream;
 
-    BenchmarkRunner runner;
-    runner.runSelectionSortAlgorithm(i_array);
-    runner.runInsertSortAlgorithm(i_array);
+    //ofstream recordFile;
+    //recordFile.open ("Record.csv");
 
+    stream = &std::cout;
+    *stream << "Algorithm;Elements;Random [s]; ASC [s]; DESC [s]" << endl;
+
+    BenchmarkRunner runner(stream);
+
+    std::array<ELEMENTTYPE, SIZE>* small_array = new std::array<ELEMENTTYPE, SIZE>();
+
+    runner.runSelectionSortAlgorithm(*small_array);
+    runner.runInsertSortAlgorithm(*small_array);
+
+    //recordFile.close();
 
     return 0;
 }

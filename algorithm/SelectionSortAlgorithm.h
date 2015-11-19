@@ -1,6 +1,6 @@
-//
-// Created by am3o on 10.11.15.
-//
+/*
+ * author: Joshua Braun
+ */
 
 #ifndef SORTINGALGORITHM_SELECTIONSORTALGORITHM_H
 #define SORTINGALGORITHM_SELECTIONSORTALGORITHM_H
@@ -13,33 +13,25 @@
 class SelectionSortAlgorithm : public SortingAlgorithmBase{
 public:
     template <typename T, size_t SIZE>
-    void sortUnoptimized(std::array<T, SIZE> *ptr);
+    void sortUnoptimized(std::array<T, SIZE>& elements);
 
     template <typename T, size_t SIZE>
-    void sortOptimized(std::array<T, SIZE> *ptr);
+    void sortOptimized(std::array<T, SIZE>& elements);
 };
 
 template <typename T, size_t SIZE>
-void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE> *ptr) {
+void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE>& elements) {
     for(size_t i = 0; i < SIZE-1; i++){
-        T* currentMinValue = &ptr->at(i);
-        T* tempMinValue = this->findMinimumUnoptimized(ptr, i+1);
-        if(*currentMinValue > *tempMinValue){
-            currentMinValue = tempMinValue;
-        }
-        std::swap(ptr->at(i), *currentMinValue);
+        T* tempMinValue = this->findMinimumUnoptimized(elements, i);
+        std::swap(elements[i], *tempMinValue);
     }
 }
 
 template <typename T, size_t SIZE>
-void SelectionSortAlgorithm::sortOptimized(std::array<T,SIZE> *ptr) {
+void SelectionSortAlgorithm::sortOptimized(std::array<T,SIZE>& elements) {
     for(size_t i = 0; i < SIZE-1; i++){
-        T* currentMinValue = &ptr->at(i);
-        T* tempMinValue = this->findMinimumOptimized(ptr, i+1);
-        if(*currentMinValue > *tempMinValue){
-            currentMinValue = tempMinValue;
-        }
-        std::swap(ptr->at(i), *currentMinValue);
+        T* tempMinValue = this->findMinimumOptimized(elements, i);
+        std::swap(elements[i], *tempMinValue);
     }
 }
 

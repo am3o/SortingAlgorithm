@@ -1,6 +1,6 @@
-//
-// Created by am3o on 10.11.15.
-//
+/*
+ * author: Joshua Braun
+ */
 
 #ifndef SORTINGALGORITHM_SORTINGALGORITHMBASE_H
 #define SORTINGALGORITHM_SORTINGALGORITHMBASE_H
@@ -13,44 +13,46 @@
 class SortingAlgorithmBase {
 protected:
     template<typename T, size_t SIZE>
-    T* findMinimumOptimized (std::array<T, SIZE> *ptr);
+    T* findMinimumOptimized (std::array<T, SIZE>& elements);
 
     template<typename T, size_t SIZE>
-    T* findMinimumOptimized (std::array<T, SIZE> *ptr, size_t startIndex);
+    T* findMinimumOptimized (std::array<T, SIZE>& elements, size_t startIndex);
 
     template<typename T, size_t SIZE>
-    T* findMinimumUnoptimized (std::array<T, SIZE> *ptr);
+    T* findMinimumUnoptimized (std::array<T, SIZE>& elements);
 
     template<typename T, size_t SIZE>
-    T* findMinimumUnoptimized (std::array<T, SIZE> *ptr, size_t startIndex);
+    T* findMinimumUnoptimized (std::array<T, SIZE>& elements, size_t startIndex);
 };
 
 template<typename T, size_t SIZE>
-T* SortingAlgorithmBase::findMinimumOptimized(std::array<T, SIZE>* ptr) {
-    return this->findMinimumOptimized(ptr, 0);
+T* SortingAlgorithmBase::findMinimumOptimized(std::array<T, SIZE>& elements) {
+    return this->findMinimumOptimized(elements, 0);
 }
 
 template<typename T, size_t SIZE>
-T* SortingAlgorithmBase::findMinimumOptimized(std::array<T, SIZE>* ptr, size_t startIndex) {
-    T* minValue = &ptr->at(startIndex);
+T* SortingAlgorithmBase::findMinimumOptimized(std::array<T, SIZE>& elements, size_t startIndex) {
+    T* minValue = &elements[startIndex];
     for(size_t i = startIndex; i < SIZE; i++){
-        if(*minValue > ptr->at(i))
-            minValue = &ptr->at(i);
+        if(*minValue > elements[i]){
+            minValue = &elements[i];
+        }
     }
     return minValue;
 }
 
 template<typename T, size_t SIZE>
-T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>* ptr) {
-    return this->findMinimumUnoptimized(ptr, 0);
+T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>& elements) {
+    return this->findMinimumUnoptimized(elements, 0);
 }
 
 template<typename T, size_t SIZE>
-T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>* ptr, size_t startIndex) {
-    T* minValue = &ptr->at(startIndex);
-    for(size_t i = SIZE-1; i >= startIndex; i--){
-        if(*minValue > ptr->at(i))
-            minValue = &ptr->at(i);
+T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>& elements, size_t startIndex) {
+    T* minValue = &elements[startIndex];
+    for(size_t i = SIZE ; i > startIndex; i--){
+        if(*minValue > elements[i]){
+            minValue = &elements[i];
+        }
     }
     return minValue;
 }

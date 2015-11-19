@@ -1,6 +1,6 @@
-//
-// Created by am3o on 12.11.15.
-//
+/*
+ * author: Joshua Braun
+ */
 
 #include <gtest/gtest.h>
 #include "../../algorithm/SelectionSortAlgorithm.h"
