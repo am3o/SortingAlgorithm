@@ -7,7 +7,7 @@
 #include "../../algorithm/InsertSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
-#define SIZE 1024
+#define SIZE 50
 
 using namespace std;
 
