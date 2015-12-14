@@ -11,6 +11,8 @@
 #include "../util/TestSuiteService.h"
 #include "../algorithm/InsertSortAlgorithm.h"
 #include "../algorithm/SelectionSortAlgorithm.h"
+#include "../algorithm/QuickSortAlgorithm.h"
+#include "../algorithm/MergeSortAlgorithm.h"
 
 #define CACHESIZE 64000
 
@@ -37,6 +39,9 @@ public:
 
     template<typename T, size_t SIZE>
     void runInsertSortAlgorithm(std::array<T, SIZE>& parameter);
+
+    template<typename T, size_t SIZE>
+    void runMergeSortAlgorithm(std::array<T, SIZE>& parameter);
 };
 
 BenchmarkRunner::BenchmarkRunner() {
@@ -135,6 +140,22 @@ void BenchmarkRunner::runSelectionSortAlgorithm(std::array<T, SIZE>& parameter) 
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
     }
+    *_oStream << std::endl;
+}
+
+template<typename T, size_t SIZE>
+void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
+    MergeSortAlgorithm sortAlgorithm;
+
+    *_oStream << "MergeSort - Bottom-Up; " << SIZE << " ; ";
+    for(int i = 0; i < 3; i++){
+        this->prepareBenchmarkTest(i, parameter);
+        high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        sortAlgorithm.sortBottomUp(parameter);
+        high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+    }
+
     *_oStream << std::endl;
 }
 
