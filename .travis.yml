@@ -1,6 +1,11 @@
 language: cpp
+install:
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7"
+
 compiler: 
   - gcc
+  - clang
 
 script:
   - mkdir build
