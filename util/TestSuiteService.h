@@ -33,7 +33,7 @@ void TestSuiteService::fillArrayAsc(std::array<T, SIZE>& elements) {
 template<typename T, size_t SIZE>
 void TestSuiteService::fillArrayDesc(std::array<T, SIZE>& elements) {
     for(size_t i = 0; i < SIZE; i++){
-        elements[i] = SIZE - i;
+        elements[i] = (T) SIZE - i - 1;
     }
 }
 
