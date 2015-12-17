@@ -10,4 +10,4 @@ before_script:
     - cmake -G "Unix Makefiles" ..
     - ls -al
 
-script: make  
+script: scons  
