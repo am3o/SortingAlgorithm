@@ -8,5 +8,5 @@ before_script:
     - cmake -G "Unix Makefiles" ..
 
 script: 
-    - make test
+    - make test && make
     - ls -a
