@@ -7,4 +7,6 @@ before_script:
     - cd build
     - cmake -G "Unix Makefiles" ..
 
-script: make test
+script: 
+    - make test
+    - ls -a
