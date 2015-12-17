@@ -1,13 +1,10 @@
 language: cpp
 
-compiler:  
-    - gcc
-    - clang
+compiler: gcc
 
 before_script:  
     - mkdir build
     - cd build
     - cmake -G "Unix Makefiles" ..
-    - ls -al
 
-script: scons  
+script: make test
