@@ -14,7 +14,7 @@
 #include "../algorithm/QuickSortAlgorithm.h"
 #include "../algorithm/MergeSortAlgorithm.h"
 
-#define CACHESIZE 64000
+#define CACHESIZE 128000
 
 using namespace std::chrono;
 
@@ -42,6 +42,9 @@ public:
 
     template<typename T, size_t SIZE>
     void runMergeSortAlgorithm(std::array<T, SIZE>& parameter);
+
+    template <typename T, size_t SIZE>
+    void runQuickSortAlgorithm(std::array<T, SIZE>& parameter);
 };
 
 BenchmarkRunner::BenchmarkRunner() {
@@ -154,6 +157,35 @@ void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
         sortAlgorithm.sortBottomUp(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+    }
+
+    *_oStream << std::endl;
+
+    *_oStream << "MergeSort - Natural; " << SIZE << " ; ";
+    for(int i = 0; i < 3; i++){
+        this->prepareBenchmarkTest(i, parameter);
+        high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        // sortAlgorithm.sortNatural(parameter);
+        high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+    }
+    *_oStream << std::endl;
+}
+template <typename T, size_t SIZE>
+void BenchmarkRunner::runQuickSortAlgorithm(std::array<T, SIZE> &parameter) {
+    QuicksortAlgorithm sortAlgorithm;
+
+    *_oStream << "QuickSort - Partitioning;" << SIZE << " ; ";
+    *_oStream << std::endl;
+    for(int i = 0; i < 3; i++){
+        this->prepareBenchmarkTest(i, parameter);
+        high_resolution_clock::time_point t1 = high_resolution_clock::now();
+        sortAlgorithm.sort(parameter, 0, SIZE-1);
+        high_resolution_clock::time_point t2 = high_resolution_clock::now();
+        *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+
+        //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
+        //*_oStream << std::endl;
     }
 
     *_oStream << std::endl;
