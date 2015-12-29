@@ -74,7 +74,7 @@ bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE>& pa
             _service->fillArrayDesc(parameter);
             break;
         default:
-            _service->fillArrayRandom(parameter);
+           for(int k = 0; k < SIZE; k++) parameter[k] = 1;
             break;
     }
 
@@ -151,7 +151,7 @@ void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
     MergeSortAlgorithm sortAlgorithm;
 
     *_oStream << "MergeSort - Bottom-Up; " << SIZE << " ; ";
-    for(int i = 0; i < 3; i++){
+    for(int i = 0; i < 4; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sortBottomUp(parameter);
@@ -161,13 +161,16 @@ void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
 
     *_oStream << std::endl;
 
-    *_oStream << "MergeSort - Natural; " << SIZE << " ; ";
-    for(int i = 0; i < 3; i++){
+    *_oStream << "MergeSort - Natural; " << SIZE << " ; " << std::endl;
+    for(int i = 0; i < 4; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
-        // sortAlgorithm.sortNatural(parameter);
+        sortAlgorithm.sortNatural(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
+
+        for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
+        *_oStream << std::endl;
     }
     *_oStream << std::endl;
 }
@@ -180,12 +183,12 @@ void BenchmarkRunner::runQuickSortAlgorithm(std::array<T, SIZE> &parameter) {
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
-        sortAlgorithm.sort(parameter, 0, SIZE-1);
+        sortAlgorithm.sort(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
 
         //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
-        //*_oStream << std::endl;
+        *_oStream << std::endl;
     }
 
     *_oStream << std::endl;
