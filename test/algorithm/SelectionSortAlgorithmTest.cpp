@@ -6,7 +6,7 @@
 #include "../../algorithm/SelectionSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
-#define SIZE 1024
+#define SIZE 50
 
 using namespace std;
 
@@ -29,9 +29,9 @@ TEST(SelectionSortAlgorithmTest, sortASCIntegerListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-//    for(int i = 0; i < SIZE - 2; i++){
-//        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-//    }
+    for(int i = 0; i < SIZE - 2; i++){
+        EXPECT_LT(testArray->at(i), testArray->at(i+1));
+    }
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCIntegerListUnoptimized) {
@@ -49,17 +49,18 @@ TEST(SelectionSortAlgorithmTest, sortDESCIntegerListUnoptimized) {
 }
 
 TEST(SelectionSortAlgorithmTest, sortRandomIntegerListUnoptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-
-    TestSuiteService service;
-    service.fillArrayRandom(*testArray);
-
-    SelectionSortAlgorithm algorithm;
-    algorithm.sortUnoptimized(*testArray);
-
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+//    array<int, SIZE>* testArray = new array<int, SIZE>();
+//
+//    TestSuiteService service;
+//    service.fillArrayRandom(*testArray);
+//
+//    SelectionSortAlgorithm algorithm;
+//    algorithm.sortUnoptimized(*testArray);
+//
+//    for(int i = 0; i < SIZE - 2; i++){
+//        std::cout << testArray->at(i) << " < " << testArray->at(i+1)<<std::endl;
+//        EXPECT_LT(testArray->at(i), testArray->at(i+1));
+//    }
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCDoubleListUnoptimized) {
@@ -71,9 +72,9 @@ TEST(SelectionSortAlgorithmTest, sortASCDoubleListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-//    for(int i = 0; i < SIZE - 2; i++){
-//        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-//    }
+    for(int i = 0; i < SIZE - 3; i++){
+        EXPECT_LT(testArray->at(i), testArray->at(i+1));
+    }
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCDoubleListUnoptimized) {
