@@ -42,6 +42,7 @@ template  <typename T, size_t SIZE>
 void MergeSortAlgorithm::sortNatural(std::array<T, SIZE> &elements) {
     std::array<T, SIZE>* aux = new std::array<T, SIZE>();
     while(!mergeruns(elements, *aux) & !mergeruns(*aux, elements));
+    delete aux;
 }
 
 template <typename T, size_t SIZE>
