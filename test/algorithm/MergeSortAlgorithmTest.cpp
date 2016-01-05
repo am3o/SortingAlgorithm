@@ -7,13 +7,13 @@
 #include "../../algorithm/MergeSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
-#define SIZE 50
+#define SMALL_SIZE 50
 
 using namespace std;
 
 TEST(MergeSortAlgorithmTest, sortEmptyListWithoutGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-    array<int, SIZE> expectedArray = *testArray;
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
+    array<int, SMALL_SIZE> expectedArray = *testArray;
 
     EXPECT_EQ(expectedArray, *testArray);
 }

@@ -6,22 +6,27 @@
 #include "../../algorithm/SelectionSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
-#define SIZE 50
+#define SMALL_SIZE 5
+#define LARGE_SIZE 10000
 
 using namespace std;
 
-TEST(SelectionSortAlgorithmTest, sortEmptyListUnoptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-    array<int, SIZE> expectedArray = *testArray;
+TEST(SelectionSortAlgorithmTest, sortEmptyIntegerListUnoptimized) {
+    int expectedValue = 0;
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    EXPECT_EQ(expectedArray, *testArray);
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCIntegerListUnoptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -29,13 +34,12 @@ TEST(SelectionSortAlgorithmTest, sortASCIntegerListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCIntegerListUnoptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -43,28 +47,39 @@ TEST(SelectionSortAlgorithmTest, sortDESCIntegerListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortRandomIntegerListUnoptimized) {
-//    array<int, SIZE>* testArray = new array<int, SIZE>();
-//
-//    TestSuiteService service;
-//    service.fillArrayRandom(*testArray);
-//
-//    SelectionSortAlgorithm algorithm;
-//    algorithm.sortUnoptimized(*testArray);
-//
-//    for(int i = 0; i < SIZE - 2; i++){
-//        std::cout << testArray->at(i) << " < " << testArray->at(i+1)<<std::endl;
-//        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-//    }
+TEST(SelectionSortAlgorithmTest, sortLargeIntegerListUnoptimized) {
+    array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortASCDoubleListUnoptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortEmptyDoubleListUnoptimized) {
+    double expectedValue = 0.0;
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
+}
+
+TEST(SelectionSortAlgorithmTest, sortASCIDoubleListUnoptimized) {
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -72,13 +87,12 @@ TEST(SelectionSortAlgorithmTest, sortASCDoubleListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 3; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCDoubleListUnoptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -86,87 +100,92 @@ TEST(SelectionSortAlgorithmTest, sortDESCDoubleListUnoptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortRandomDoubleListUnoptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortLargeDoubleListUnoptimized) {
+    array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortUnoptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(SelectionSortAlgorithmTest, sortEmptyStringListUnoptimized) {
+    string expectedValue = "";
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCStringListUnoptimized) {
-//    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-//    array<string, SIZE>* testArray = new array<string, SIZE>();
-//
-//    for(int k = 0; k < SIZE; k++){
-//        testArray->at(k) += alphabet[k % 27];
-//    }
-//
-//    SelectionSortAlgorithm algorithm;
-//    algorithm.sortUnoptimized(*testArray);
-//
-//    for(int i = 0; i < SIZE - 2; i++){
-//        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-//    }
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayAsc(*testArray);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCStringListUnoptimized) {
-//    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-//    array<string, SIZE>* testArray = new array<string, SIZE>();
-//
-//    for(int k = 0; k < SIZE; k++){
-//        testArray->at(k) += alphabet[SIZE % 27 - k % 27];
-//    }
-//
-//    SelectionSortAlgorithm algorithm;
-//    algorithm.sortUnoptimized(*testArray);
-//
-//    for(int i = 0; i < SIZE - 2; i++){
-//        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-//    }
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortRandomStringListUnoptimized) {
-//    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-//    array<string, SIZE>* testArray = new array<string, SIZE>();
-//
-//    for(int k = 0; k < SIZE; k++){
-//        for(int j = 0; j < rand() % 10; j++){
-//            testArray->at(k) += alphabet[j];
-//        }
-//    }
-//
-//    SelectionSortAlgorithm algorithm;
-//    algorithm.sortUnoptimized(*testArray);
-//
-//    for(int i = 0; i < SIZE - 2; i++){
-//        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-//    }
+TEST(SelectionSortAlgorithmTest, sortLargeStringListUnoptimized) {
+    array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortUnoptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortEmptyListOptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-    array<int, SIZE> expectedArray = *testArray;
+TEST(SelectionSortAlgorithmTest, sortEmptyIntegerListOptimized) {
+    int expectedValue = 0;
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    EXPECT_EQ(expectedArray, *testArray);
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCIntegerListOptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -174,13 +193,12 @@ TEST(SelectionSortAlgorithmTest, sortASCIntegerListOptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCIntegerListOptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -188,41 +206,39 @@ TEST(SelectionSortAlgorithmTest, sortDESCIntegerListOptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortRandomIntegerListOptimized) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortLargeIntegerListOptimized) {
+    array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortASCDoubleListOptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortEmptyListDoubleOptimized) {
+    double expectedValue = 0.0;
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayAsc(*testArray);
+    service.fillArrayWithValue(*testArray, expectedValue);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortDESCDoubleListOptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortASCListDoubleOptimized) {
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -230,71 +246,85 @@ TEST(SelectionSortAlgorithmTest, sortDESCDoubleListOptimized) {
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(SelectionSortAlgorithmTest, sortRandomDoubleListOptimized) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(SelectionSortAlgorithmTest, sortDESCListDoubleOptimized) {
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayAsc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(SelectionSortAlgorithmTest, sortLargeDoubleListOptimized) {
+    array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortOptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(SelectionSortAlgorithmTest, sortEmptyStringListOptimized) {
+    string expectedValue = "";
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    SelectionSortAlgorithm algorithm;
+    algorithm.sortOptimized(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCStringListOptimized) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayAsc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCStringListOptimized) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[SIZE % 27 - k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(SelectionSortAlgorithmTest, sortRandomStringListOptimized) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        for(int j = 0; j < rand() % 10; j++){
-            testArray->at(k) += alphabet[j];
-        }
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     SelectionSortAlgorithm algorithm;
     algorithm.sortOptimized(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }

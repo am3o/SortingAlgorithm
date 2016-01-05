@@ -7,22 +7,27 @@
 #include "../../algorithm/InsertSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
-#define SIZE 50
+#define SMALL_SIZE 5
+#define LARGE_SIZE 10000
 
 using namespace std;
 
-TEST(InsertSortAlgorithmTest, sortEmptyListWithoutGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-    array<int, SIZE> expectedArray = *testArray;
+TEST(InsertSortAlgorithmTest, sortEmptyIntegerListWithoutGuardian) {
+    int expectedValue = 0;
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    EXPECT_EQ(expectedArray, *testArray);
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCIntegerListWithoutGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -30,13 +35,12 @@ TEST(InsertSortAlgorithmTest, sortASCIntegerListWithoutGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithoutGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -44,27 +48,39 @@ TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithoutGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomIntegerListWithoutGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeIntegerListWithoutGuardian) {
+    array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(InsertSortAlgorithmTest, sortEmptyDoubleListWithoutGuardian) {
+    double expectedValue = 0.0;
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    InsertSortAlgorithm algorithm;
+    algorithm.sort(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCIDoubleListWithoutGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -72,13 +88,12 @@ TEST(InsertSortAlgorithmTest, sortASCIDoubleListWithoutGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCDoubleListWithoutGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -86,87 +101,92 @@ TEST(InsertSortAlgorithmTest, sortDESCDoubleListWithoutGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomDoubleListWithoutGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeDoubleListWithoutGuardian) {
+    array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(InsertSortAlgorithmTest, sortEmptyStringListWithoutGuardian) {
+    string expectedValue = "";
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    InsertSortAlgorithm algorithm;
+    algorithm.sort(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCStringListWithoutGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayAsc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCStringListWithoutGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[k % 27 - k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomStringListWithoutGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeStringListWithoutGuardian) {
+    array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        for(int j = 0; j < rand() % 10; j++){
-            testArray->at(k) += alphabet[j];
-        }
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sort(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyListWithGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
-    array<int, SIZE> expectedArray = *testArray;
+TEST(InsertSortAlgorithmTest, sortEmptyIntegerListWithGuardian) {
+    int expectedValue = 0;
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    EXPECT_EQ(expectedArray, *testArray);
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCIntegerListWithGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -174,13 +194,12 @@ TEST(InsertSortAlgorithmTest, sortASCIntegerListWithGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+    array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
@@ -188,27 +207,39 @@ TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomIntegerListWithGuardian) {
-    array<int, SIZE>* testArray = new array<int, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeIntegerListWithGuardian) {
+    array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(InsertSortAlgorithmTest, sortEmptyListDoubleWithGuardian) {
+    double expectedValue = 0.0;
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    InsertSortAlgorithm algorithm;
+    algorithm.sortWithGuardian(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCListDoubleWithGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -216,13 +247,12 @@ TEST(InsertSortAlgorithmTest, sortASCListDoubleWithGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCListDoubleWithGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+    array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
@@ -230,71 +260,72 @@ TEST(InsertSortAlgorithmTest, sortDESCListDoubleWithGuardian) {
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomDoubleListWithGuardian) {
-    array<double, SIZE>* testArray = new array<double, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeDoubleListWithGuardian) {
+    array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
 
     TestSuiteService service;
-    service.fillArrayRandom(*testArray);
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LT(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
+}
+
+TEST(InsertSortAlgorithmTest, sortEmptyStringListWithGuardian) {
+    string expectedValue = "";
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
+
+    TestSuiteService service;
+    service.fillArrayWithValue(*testArray, expectedValue);
+
+    InsertSortAlgorithm algorithm;
+    algorithm.sortWithGuardian(*testArray);
+
+    EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortASCStringListWithGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayAsc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
 TEST(InsertSortAlgorithmTest, sortDESCStringListWithGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+    array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        testArray->at(k) += alphabet[SIZE % 27 - k % 27];
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortRandomStringListWithGuardian) {
-    char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-    array<string, SIZE>* testArray = new array<string, SIZE>();
+TEST(InsertSortAlgorithmTest, sortLargeStringListWithGuardian) {
+    array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
 
-    for(int k = 0; k < SIZE; k++){
-        for(int j = 0; j < rand() % 10; j++){
-            testArray->at(k) += alphabet[j];
-        }
-    }
+    TestSuiteService service;
+    service.fillArrayDesc(*testArray);
 
     InsertSortAlgorithm algorithm;
     algorithm.sortWithGuardian(*testArray);
 
-    for(int i = 0; i < SIZE - 2; i++){
-        EXPECT_LE(testArray->at(i), testArray->at(i+1));
-    }
+    EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
+    delete testArray;
 }
