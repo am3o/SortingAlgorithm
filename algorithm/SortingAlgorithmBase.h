@@ -63,7 +63,7 @@ T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>& elements) {
 template<typename T, size_t SIZE>
 T* SortingAlgorithmBase::findMinimumUnoptimized(std::array<T, SIZE>& elements, size_t startIndex) {
     T* minValue = &elements[startIndex];
-    for(size_t i = SIZE ; i > startIndex; i--){
+    for(size_t i = SIZE-1 ; i > startIndex; i--){
         if(*minValue > elements[i]){
             minValue = &elements[i];
         }
