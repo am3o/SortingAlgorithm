@@ -13,8 +13,6 @@
 using namespace std;
 
 class TestSuiteService {
-private:
-    //char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
 public:
     template<typename T, size_t SIZE>
     void fillArrayWithValue(array<T, SIZE>& elements, T value);
@@ -65,7 +63,8 @@ template<size_t SIZE>
 void TestSuiteService::fillArrayAsc(array<string, SIZE> &elements) {
     char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
     for(size_t i = 0; i < SIZE; i++){
-        elements[i] = alphabet[i%26];
+        for(size_t j = 0; j <= SIZE%26; j++)
+            elements[i] += alphabet[i%26];
     }
 }
 
@@ -105,6 +104,8 @@ bool TestSuiteService::verifyAlgorithmResult(array<string, SIZE> &elements) {
     char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
     for(size_t i = 0; i < SIZE - 1; i++){
         if(SIZE < 26 && strcmp(elements[i].c_str(), &alphabet[i]) == 0)
+            return false;
+        else if (!(elements[i] <= elements[i+1]))
             return false;
     }
     return true;
