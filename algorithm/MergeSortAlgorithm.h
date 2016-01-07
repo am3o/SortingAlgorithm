@@ -62,7 +62,7 @@ bool MergeSortAlgorithm::mergeruns(std::array<T, SIZE> &elements, std::array<T, 
 }
 
 template <typename T, size_t SIZE>
-void MergeSortAlgorithm::merge(std::array<T, SIZE> &a, std::array<T, SIZE> &aux,  size_t lo, size_t hi, bool asc) {
+void MergeSortAlgorithm::merge(std::array<T, SIZE> &a, std::array<T, SIZE> &aux, size_t lo, size_t hi, bool asc) {
     int k=asc? lo: hi;
     int c=asc? 1: -1;
     int i=lo, j=hi;
@@ -77,7 +77,7 @@ void MergeSortAlgorithm::merge(std::array<T, SIZE> &a, std::array<T, SIZE> &aux,
 }
 
 template <typename T, size_t SIZE>
-void MergeSortAlgorithm::merge(std::array<T, SIZE> &a, std::array<T, SIZE> &aux,  size_t lo, size_t mid, size_t hi) {
+void MergeSortAlgorithm::merge(std::array<T, SIZE> &a, std::array<T, SIZE> &aux, size_t lo, size_t mid, size_t hi) {
     size_t i = lo, j = mid + 1;
 
     for(size_t k = lo ;k <= hi; k++ )

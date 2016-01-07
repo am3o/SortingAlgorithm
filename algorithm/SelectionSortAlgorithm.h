@@ -21,7 +21,7 @@ public:
 
 template <typename T, size_t SIZE>
 void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE>& elements) {
-    for(size_t i = 0; i < SIZE-1; i++){
+    for(size_t i = 0; i < SIZE; i++){
         T* tempMinValue = this->findMinimumUnoptimized(elements, i);
         std::swap(elements[i], *tempMinValue);
     }
@@ -29,7 +29,7 @@ void SelectionSortAlgorithm::sortUnoptimized(std::array<T,SIZE>& elements) {
 
 template <typename T, size_t SIZE>
 void SelectionSortAlgorithm::sortOptimized(std::array<T,SIZE>& elements) {
-    for(size_t i = 0; i < SIZE-1; i++){
+    for(size_t i = 0; i < SIZE; i++){
         T* tempMinValue = this->findMinimumOptimized(elements, i);
         std::swap(elements[i], *tempMinValue);
     }

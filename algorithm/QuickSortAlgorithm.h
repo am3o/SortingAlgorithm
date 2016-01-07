@@ -11,7 +11,7 @@
 #define QS_TO_INSERT_THRESHOLD 25
 #define FACTOR_WORSTCASE 10
 
-class QuicksortAlgorithm : public SortingAlgorithmBase {
+class QuickSortAlgorithm : public SortingAlgorithmBase {
 private:
     template <typename T, size_t SIZE>
     void internalSort(std::array<T, SIZE>& elements, size_t lo, size_t hi);
@@ -33,7 +33,7 @@ public:
 };
 
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::internalSort(std::array<T, SIZE> &elements, size_t lo, size_t hi) {
+void QuickSortAlgorithm::internalSort(std::array<T, SIZE> &elements, size_t lo, size_t hi) {
     size_t i = lo - 1, j = hi;
     size_t p = lo, q = hi-1;
 
@@ -65,7 +65,7 @@ void QuicksortAlgorithm::internalSort(std::array<T, SIZE> &elements, size_t lo, 
 }
 
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::internalInsertSortWithGuardian(std::array<T, SIZE> &elements,
+void QuickSortAlgorithm::internalInsertSortWithGuardian(std::array<T, SIZE> &elements,
                                                         size_t lo, size_t hi) {
     T* guardian = this->findMinimumOptimized(elements, lo, hi);
     std::swap(elements[lo], *guardian);
@@ -78,7 +78,7 @@ void QuicksortAlgorithm::internalInsertSortWithGuardian(std::array<T, SIZE> &ele
     }
 }
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::internalMerge(std::array<T, SIZE> &elements, std::array<T, SIZE> &aux, size_t lo,
+void QuickSortAlgorithm::internalMerge(std::array<T, SIZE> &elements, std::array<T, SIZE> &aux, size_t lo,
                                        size_t hi) {
     size_t i = lo, mid = lo + (hi - lo)/2, j = mid + 1;
 
@@ -94,7 +94,7 @@ void QuicksortAlgorithm::internalMerge(std::array<T, SIZE> &elements, std::array
 }
 
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::internalSortHybrid(std::array<T, SIZE> &elements, std::array<T, SIZE> &tmp, size_t lo,
+void QuickSortAlgorithm::internalSortHybrid(std::array<T, SIZE> &elements, std::array<T, SIZE> &tmp, size_t lo,
                                             size_t hi) {
     if(hi - lo >= 10){
         this->internalInsertSortWithGuardian(elements, lo, hi);
@@ -138,13 +138,13 @@ void QuicksortAlgorithm::internalSortHybrid(std::array<T, SIZE> &elements, std::
 }
 
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::sortHybrid(std::array<T, SIZE> &elements) {
+void QuickSortAlgorithm::sortHybrid(std::array<T, SIZE> &elements) {
     std::array<T, SIZE>* aux = new std::array<T, SIZE>();
     this->internalSortHybrid(elements, *aux, 0, SIZE-1);
 }
 
 template <typename T, size_t SIZE>
-void QuicksortAlgorithm::sort(std::array<T, SIZE> &elements) {
+void QuickSortAlgorithm::sort(std::array<T, SIZE> &elements) {
     this->internalSort(elements, 0, SIZE-1);
 }
 
