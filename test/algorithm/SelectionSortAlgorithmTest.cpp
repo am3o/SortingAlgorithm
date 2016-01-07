@@ -76,6 +76,7 @@ TEST(SelectionSortAlgorithmTest, sortEmptyDoubleListUnoptimized) {
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
+
 }
 
 TEST(SelectionSortAlgorithmTest, sortASCIDoubleListUnoptimized) {
@@ -89,6 +90,7 @@ TEST(SelectionSortAlgorithmTest, sortASCIDoubleListUnoptimized) {
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
+
 }
 
 TEST(SelectionSortAlgorithmTest, sortDESCDoubleListUnoptimized) {
