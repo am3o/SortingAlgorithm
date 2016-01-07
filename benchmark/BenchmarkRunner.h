@@ -86,8 +86,8 @@ bool BenchmarkRunner::prepareBenchmarkTest(int testcase, std::array<T, SIZE>& pa
     return true;
 }
 /**
-template<typename T, size_t SIZE>
-high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array<T, SIZE> *), std::array<T, SIZE>* parameter) {
+template<typename T, size_t SMALL_SIZE>
+high_resolution_clock::duration BenchmarkRunner::run(void(*algorithm)(std::array<T, SMALL_SIZE> *), std::array<T, SMALL_SIZE>* parameter) {
     this->prepareBenchmarkTest(0, parameter);
     high_resolution_clock::time_point t1 = high_resolution_clock::now();
     algorithm(parameter);
@@ -157,11 +157,7 @@ void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
         sortAlgorithm.sortBottomUp(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
-
-        //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
-        *_oStream << std::endl;
     }
-
     *_oStream << std::endl;
 
     *_oStream << "MergeSort - Natural; " << SIZE << " ; " << std::endl;
@@ -171,42 +167,31 @@ void BenchmarkRunner::runMergeSortAlgorithm(std::array<T, SIZE> &parameter) {
         sortAlgorithm.sortNatural(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
-
-        //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
-        *_oStream << std::endl;
     }
     *_oStream << std::endl;
 }
 template <typename T, size_t SIZE>
 void BenchmarkRunner::runQuickSortAlgorithm(std::array<T, SIZE> &parameter) {
-    QuicksortAlgorithm sortAlgorithm;
+    QuickSortAlgorithm sortAlgorithm;
 
     *_oStream << "QuickSort - Partitioning;" << SIZE << " ; ";
-    *_oStream << std::endl;
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sort(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
-
-        //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
-        *_oStream << std::endl;
     }
+    *_oStream << std::endl;
 
     *_oStream << "QuickSort - Hybrid;" << SIZE << " ; ";
-    *_oStream << std::endl;
     for(int i = 0; i < 3; i++){
         this->prepareBenchmarkTest(i, parameter);
         high_resolution_clock::time_point t1 = high_resolution_clock::now();
         sortAlgorithm.sortHybrid(parameter);
         high_resolution_clock::time_point t2 = high_resolution_clock::now();
         *_oStream << duration_cast<duration<double>>(t2 - t1).count() << "; ";
-
-        //for(int k = 0; k < SIZE; k++) *_oStream << parameter[k] << "|";
-        *_oStream << std::endl;
     }
-
     *_oStream << std::endl;
 }
 
