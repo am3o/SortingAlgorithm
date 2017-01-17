@@ -1,10 +1,10 @@
-/*
- * author: Joshua Braun
- */
+//
+// Created by am3o on 17.12.15.
+//
 
 #include <gtest/gtest.h>
 
-#include "../../algorithm/InsertSortAlgorithm.h"
+#include "../../algorithm/MergeSortAlgorithm.h"
 #include "../../util/TestSuiteService.h"
 
 #define SMALL_SIZE 5
@@ -12,320 +12,321 @@
 
 using namespace std;
 
-TEST(InsertSortAlgorithmTest, sortEmptyIntegerListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyIntegerListBottomUp) {
     int expectedValue = 0;
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCIntegerListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCIntegerListBottomUp) {
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCIntegerListBottomUp) {
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeIntegerListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeIntegerListBottomUp) {
     array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyDoubleListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyDoubleListBottomUp) {
     double expectedValue = 0.0;
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCIDoubleListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCIDoubleListBottomUp) {
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCDoubleListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCDoubleListBottomUp) {
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeDoubleListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeDoubleListBottomUp) {
     array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyStringListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyStringListBottomUp) {
     string expectedValue = "";
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCStringListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCStringListBottomUp) {
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCStringListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCStringListBottomUp) {
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeStringListWithoutGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeStringListBottomUp) {
     array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sort(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortBottomUp(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyIntegerListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyIntegerListNatural) {
     int expectedValue = 0;
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCIntegerListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCIntegerListNatural) {
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCIntegerListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCIntegerListNatural) {
     array<int, SMALL_SIZE>* testArray = new array<int, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeIntegerListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeIntegerListNatural) {
     array<int, LARGE_SIZE>* testArray = new array<int, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyListDoubleWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyListDoubleNatural) {
     double expectedValue = 0.0;
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCListDoubleWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCListDoubleNatural) {
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCListDoubleWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCListDoubleNatural) {
     array<double, SMALL_SIZE>* testArray = new array<double, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeDoubleListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeDoubleListNatural) {
     array<double, LARGE_SIZE>* testArray = new array<double, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortEmptyStringListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortEmptyStringListNatural) {
     string expectedValue = "";
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayWithValue(*testArray, expectedValue);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyExpectedValueAlgorithmResult(expectedValue, *testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortASCStringListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortASCStringListNatural) {
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayAsc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortDESCStringListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortDESCStringListNatural) {
     array<string, SMALL_SIZE>* testArray = new array<string, SMALL_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
 
-TEST(InsertSortAlgorithmTest, sortLargeStringListWithGuardian) {
+TEST(MergeSortAlgorithmTest, sortLargeStringListNatural) {
     array<string, LARGE_SIZE>* testArray = new array<string, LARGE_SIZE>();
 
     TestSuiteService service;
     service.fillArrayDesc(*testArray);
 
-    InsertSortAlgorithm algorithm;
-    algorithm.sortWithGuardian(*testArray);
+    MergeSortAlgorithm algorithm;
+    algorithm.sortNatural(*testArray);
 
     EXPECT_TRUE(service.verifyAlgorithmResult(*testArray));
     delete testArray;
 }
+
